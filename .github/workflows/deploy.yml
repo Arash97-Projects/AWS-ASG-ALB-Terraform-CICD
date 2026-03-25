@@ -38,3 +38,10 @@ jobs:
       - name: Terraform Apply
         working-directory: infra
         run: terraform apply -auto-approve
+
+
+            - name: Refresh ASG instances
+      - run: |
+            aws autoscaling start-instance-refresh \
+            --auto-scaling-group-name wesii-lab-asg \
+            --preferences '{"MinHealthyPercentage": 50}'
