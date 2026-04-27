@@ -14,35 +14,7 @@ A production-style AWS infrastructure project built with Terraform and deployed 
 
 ## Architecture
 
-```
-You (VSCode)
-    │
-    │ git push
-    ▼
-GitHub (main branch)
-    │
-    │ triggers
-    ▼
-GitHub Actions Runner
-    ├── checkout code
-    ├── authenticate to AWS via OIDC
-    ├── terraform init + plan + apply
-    └── trigger ASG instance refresh
-            │
-            ▼
-        AWS VPC (10.0.0.0/16)
-            │
-            ├── Public Subnet AZ-a (10.0.0.0/24)
-            └── Public Subnet AZ-b (10.0.1.0/24)
-                        │
-                Application Load Balancer
-                        │
-            ┌───────────┴───────────┐
-            │                       │
-       EC2 t3.micro            EC2 t3.micro
-       AZ-a · nginx            AZ-b · nginx
-       (git clone on boot)     (git clone on boot)
-```
+![AWS Architecture](Aws-Design.png)
 
 ## Project structure
 
